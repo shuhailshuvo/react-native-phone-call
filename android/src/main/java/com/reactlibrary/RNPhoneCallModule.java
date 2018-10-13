@@ -89,12 +89,14 @@ public class RNPhoneCallModule extends ReactContextBaseJavaModule {
     }
 
     private void startMakingCall() {
-      Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
+      Intent callIntent = new Intent(Intent.ACTION_CALL));
       callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
       if (ActivityCompat.checkSelfPermission(getReactApplicationContext(), permission.CALL_PHONE)
               != PackageManager.PERMISSION_GRANTED) {
         return;
       }
+      phoneNumber = Uri.encode(phoneNumber);
+      callIntent.setData(Uri.parse("tel:"+phoneNumber));
       getReactApplicationContext().startActivity(callIntent);
       getReactApplicationContext().getContentResolver()
               .registerContentObserver(CallLog.Calls.CONTENT_URI, true, new CallContentObserver());
