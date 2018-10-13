@@ -89,7 +89,7 @@ public class RNPhoneCallModule extends ReactContextBaseJavaModule {
     }
 
     private void startMakingCall() {
-      Intent callIntent = new Intent(Intent.ACTION_CALL));
+      Intent callIntent = new Intent(Intent.ACTION_CALL);
       callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
       if (ActivityCompat.checkSelfPermission(getReactApplicationContext(), permission.CALL_PHONE)
               != PackageManager.PERMISSION_GRANTED) {
